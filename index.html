@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             min-height: 100vh;
@@ -19,7 +20,7 @@
             position: relative;
             overflow-x: hidden;
         }
-        
+
         /* Safari background pattern */
         body::before {
             content: '';
@@ -28,27 +29,35 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: 
+            background-image:
                 url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 50 Q25 30 50 50 T100 50' stroke='%23ffffff10' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='20' cy='80' r='1' fill='%23ffffff08'/%3E%3Ccircle cx='80' cy='20' r='1' fill='%23ffffff08'/%3E%3Ccircle cx='60' cy='70' r='0.5' fill='%23ffffff05'/%3E%3C/svg%3E"),
                 url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 100 Q75 80 100 100 T150 100' stroke='%23ffffff08' stroke-width='1' fill='none'/%3E%3C/svg%3E");
             background-position: 0 0, 50px 50px;
             background-size: 100px 100px, 200px 200px;
             z-index: 0;
             animation: float 20s ease-in-out infinite;
+            will-change: transform;
         }
-        
+
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        
+
         .container {
             max-width: 600px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
-        
+
         .header {
             background: white;
             border-radius: 20px;
@@ -59,7 +68,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .header::before {
             content: '🌍';
             position: absolute;
@@ -69,18 +78,19 @@
             opacity: 0.1;
             transform: rotate(-15deg);
         }
-        
+
         @keyframes slideDown {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .family-badge {
             display: inline-block;
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -91,13 +101,21 @@
             font-weight: bold;
             margin-bottom: 10px;
             animation: pulse 2s ease-in-out infinite;
+            will-change: transform;
         }
-        
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
-        
+
         h1 {
             color: #333;
             font-size: 26px;
@@ -106,16 +124,24 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .safari-icon {
             animation: bounce 2s ease-in-out infinite;
+            will-change: transform;
         }
-        
+
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
         }
-        
+
         .status {
             display: flex;
             justify-content: space-between;
@@ -124,31 +150,51 @@
             gap: 10px;
             margin-top: 15px;
         }
-        
+
         .sync-status {
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
-        
+
         .online {
             background: #10b981;
             color: white;
-            animation: glow-green 2s ease-in-out infinite;
         }
-        
-        @keyframes glow-green {
-            0%, 100% { box-shadow: 0 0 5px rgba(16, 185, 129, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.8); }
+
+        .online::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 20px 5px rgba(16, 185, 129, 0.8);
+            opacity: 0.5;
+            animation: glow-opacity 2s ease-in-out infinite;
+            will-change: opacity;
+            z-index: -1;
         }
-        
+
+        @keyframes glow-opacity {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
         .offline {
             background: #f59e0b;
             color: white;
         }
-        
+
         .user-info {
             display: flex;
             gap: 10px;
@@ -158,12 +204,12 @@
             border-radius: 10px;
             border: 2px solid rgba(102, 126, 234, 0.2);
         }
-        
+
         .user-info label {
             font-weight: bold;
             color: #667eea;
         }
-        
+
         .user-info input {
             padding: 5px 10px;
             border: 1px solid rgba(102, 126, 234, 0.3);
@@ -173,14 +219,14 @@
             font-weight: bold;
             color: #333;
         }
-        
+
         .welcome-message {
             color: #666;
             font-size: 14px;
             margin-top: 10px;
             font-style: italic;
         }
-        
+
         .animals-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -188,18 +234,19 @@
             margin-bottom: 20px;
             animation: fadeIn 0.8s ease-out 0.2s both;
         }
-        
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .animal-btn {
             background: white;
             border: 3px solid #e5e7eb;
@@ -209,8 +256,9 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            will-change: transform, border-color, box-shadow;
         }
-        
+
         .animal-btn::before {
             content: '';
             position: absolute;
@@ -223,43 +271,58 @@
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
-        
+
         .animal-btn:active::before {
             width: 300px;
             height: 300px;
         }
-        
+
         .animal-btn:hover {
             transform: translateY(-5px) scale(1.05);
             border-color: #667eea;
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
-        
+
         .animal-btn:active {
             transform: scale(0.95);
         }
-        
+
         .animal-emoji {
             font-size: 36px;
             margin-bottom: 5px;
             display: block;
+            will-change: transform;
+        }
+
+        .animal-btn:hover .animal-emoji {
             animation: wiggle 2s ease-in-out infinite;
             animation-delay: calc(var(--index) * 0.1s);
         }
-        
+
+
         @keyframes wiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-3deg); }
-            75% { transform: rotate(3deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-3deg);
+            }
+
+            75% {
+                transform: rotate(3deg);
+            }
         }
-        
+
         .animal-name {
             font-weight: bold;
             color: #333;
             margin-bottom: 5px;
             font-size: 14px;
         }
-        
+
         .animal-count {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
@@ -270,17 +333,25 @@
             font-weight: bold;
             transition: all 0.3s ease;
         }
-        
+
         .animal-count.pop {
             animation: pop 0.3s ease-out;
         }
-        
+
         @keyframes pop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .add-custom {
             background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
             border: 3px dashed #9ca3af;
@@ -291,14 +362,14 @@
             color: #6b7280;
             transition: all 0.3s ease;
         }
-        
+
         .add-custom:hover {
             background: linear-gradient(135deg, #e5e7eb, #d1d5db);
             border-color: #667eea;
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
-        
+
         .sightings-list {
             background: white;
             border-radius: 20px;
@@ -309,18 +380,19 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             animation: slideUp 0.6s ease-out 0.4s both;
         }
-        
+
         @keyframes slideUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .sighting-item {
             display: flex;
             justify-content: space-between;
@@ -332,23 +404,24 @@
             transition: all 0.3s ease;
             animation: slideIn 0.3s ease-out;
         }
-        
+
         @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateX(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        
+
         .sighting-item:hover {
             background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
             transform: translateX(5px);
         }
-        
+
         .sighting-user {
             display: inline-block;
             background: rgba(102, 126, 234, 0.1);
@@ -359,16 +432,16 @@
             font-weight: bold;
             margin-left: 5px;
         }
-        
+
         .sighting-info {
             flex: 1;
         }
-        
+
         .sighting-actions {
             display: flex;
             gap: 8px;
         }
-        
+
         .btn-small {
             padding: 5px 10px;
             border: none;
@@ -378,21 +451,21 @@
             transition: all 0.2s ease;
             font-weight: bold;
         }
-        
+
         .btn-small:hover {
             transform: scale(1.1);
         }
-        
+
         .btn-edit {
             background: #3b82f6;
             color: white;
         }
-        
+
         .btn-delete {
             background: #ef4444;
             color: white;
         }
-        
+
         .actions {
             background: white;
             border-radius: 20px;
@@ -403,7 +476,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             animation: slideUp 0.6s ease-out 0.6s both;
         }
-        
+
         .btn {
             padding: 12px 24px;
             border: none;
@@ -413,8 +486,9 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            will-change: transform, box-shadow;
         }
-        
+
         .btn::before {
             content: '';
             position: absolute;
@@ -427,32 +501,32 @@
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
-        
+
         .btn:active::before {
             width: 300px;
             height: 300px;
         }
-        
+
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn-primary {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
-        
+
         .btn-secondary {
             background: linear-gradient(135deg, #6b7280, #4b5563);
             color: white;
         }
-        
+
         .btn-success {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
         }
-        
+
         .modal {
             display: none;
             position: fixed;
@@ -460,28 +534,28 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 1000;
             padding: 20px;
         }
-        
+
         .modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
             animation: fadeInModal 0.3s ease-out;
         }
-        
+
         @keyframes fadeInModal {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
         }
-        
+
         .modal-content {
             background: white;
             border-radius: 20px;
@@ -491,24 +565,26 @@
             animation: scaleIn 0.3s ease-out;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-        
+
         @keyframes scaleIn {
             from {
                 transform: scale(0.9);
                 opacity: 0;
             }
+
             to {
                 transform: scale(1);
                 opacity: 1;
             }
         }
-        
+
         .modal-content h2 {
             margin-bottom: 20px;
             color: #333;
         }
-        
-        .modal-content input, .modal-content select {
+
+        .modal-content input,
+        .modal-content select {
             width: 100%;
             padding: 12px;
             margin-bottom: 12px;
@@ -517,18 +593,19 @@
             font-size: 14px;
             transition: border-color 0.3s ease;
         }
-        
-        .modal-content input:focus, .modal-content select:focus {
+
+        .modal-content input:focus,
+        .modal-content select:focus {
             outline: none;
             border-color: #667eea;
         }
-        
+
         .modal-content .emoji-animal-row {
             display: flex;
             gap: 10px;
             margin-bottom: 12px;
         }
-        
+
         .modal-content .tip-box {
             margin-top: 10px;
             padding: 10px;
@@ -537,14 +614,14 @@
             font-size: 12px;
             color: #666;
         }
-        
+
         .modal-actions {
             display: flex;
             gap: 10px;
             justify-content: flex-end;
             margin-top: 20px;
         }
-        
+
         .summary {
             background: white;
             border-radius: 20px;
@@ -553,7 +630,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             animation: slideDown 0.5s ease-out 0.2s both;
         }
-        
+
         .summary h2 {
             margin-bottom: 15px;
             color: #333;
@@ -561,14 +638,14 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .summary-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 12px;
             margin-top: 15px;
         }
-        
+
         .stat {
             text-align: center;
             padding: 15px;
@@ -577,14 +654,14 @@
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
-        
+
         .stat:hover {
             transform: translateY(-3px);
             border-color: #667eea;
             background: linear-gradient(135deg, #fff, #f9fafb);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
         }
-        
+
         .stat-value {
             font-size: 28px;
             font-weight: bold;
@@ -593,14 +670,14 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .stat-label {
             font-size: 12px;
             color: #6b7280;
             margin-top: 5px;
             font-weight: 600;
         }
-        
+
         /* Notification Toast */
         .notification {
             position: fixed;
@@ -619,38 +696,153 @@
             font-weight: bold;
             font-size: 14px;
         }
-        
+
         .notification.success {
             background: #10b981;
             color: white;
         }
-        
+
         .notification.error {
             background: #ef4444;
             color: white;
         }
-        
+
         .notification.info {
             background: #3b82f6;
             color: white;
         }
-        
+
+        /* Animal Picker Modal */
+        .animal-picker-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .animal-picker-modal.active {
+            display: block;
+        }
+
+        .animal-picker-content {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        .animal-search-box {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .animal-search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .animals-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .animal-picker-item {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .animal-picker-item:hover {
+            border-color: #667eea;
+            background: white;
+            transform: scale(1.05);
+        }
+
+        .animal-picker-item:active {
+            transform: scale(0.95);
+        }
+
+        .animal-picker-emoji {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .animal-picker-name {
+            font-size: 11px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .animal-picker-custom {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .animal-picker-custom:hover {
+            opacity: 0.9;
+        }
+
+        .selected-animal-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .selected-animal-display:hover {
+            background: #e5e7eb;
+        }
+
         @keyframes slideUpNotification {
             from {
                 transform: translateX(-50%) translateY(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(-50%) translateY(0);
                 opacity: 1;
             }
         }
-        
+
         @keyframes fadeOutNotification {
             from {
                 opacity: 1;
                 transform: translateX(-50%) translateY(0);
             }
+
             to {
                 opacity: 0;
                 transform: translateX(-50%) translateY(10px);
@@ -658,6 +850,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -696,8 +889,7 @@
         </div>
 
         <div class="animals-grid" id="animalsGrid">
-            <!-- Common safari animals -->
-        </div>
+            </div>
 
         <div class="sightings-list">
             <h2>📝 Recent Sightings</h2>
@@ -705,85 +897,41 @@
         </div>
 
         <div class="actions">
-            <button class="btn btn-primary" onclick="syncNow(true)">🔄 Force Sync</button>
-            <button class="btn btn-secondary" onclick="exportData()">📊 Export Data</button>
-            <button class="btn btn-secondary" onclick="downloadBackup()">💾 Backup</button>
-            <input type="file" id="restoreFile" style="display: none" accept=".json" onchange="restoreBackup(event)">
-            <button class="btn btn-secondary" onclick="document.getElementById('restoreFile').click()">📂 Restore</button>
-            <button class="btn btn-secondary" onclick="shareLink()">🔗 Share Link</button>
+            <button class="btn btn-primary" id="forceSyncBtn">🔄 Force Sync</button>
+            <button class="btn btn-secondary" id="exportDataBtn">📊 Export Data</button>
+            <button class="btn btn-secondary" id="backupBtn">💾 Backup</button>
+            <input type="file" id="restoreFile" style="display: none" accept=".json">
+            <button class="btn btn-secondary" id="restoreBtn">📂 Restore</button>
+            <button class="btn btn-secondary" id="shareLinkBtn">🔗 Share Link</button>
         </div>
     </div>
 
-    <!-- Add/Edit Modal -->
     <div class="modal" id="editModal">
         <div class="modal-content">
             <h2 id="modalTitle">Add Animal Sighting</h2>
-            <div class="emoji-animal-row">
-                <input type="text" id="modalEmoji" placeholder="😊" style="width: 80px; text-align: center; font-size: 24px;">
-                <input type="text" id="modalAnimal" placeholder="Search or type animal name" list="animalsList" style="flex: 1;">
+            <div class="selected-animal-display" id="openAnimalPickerBtn">
+                <span id="selectedEmoji" style="font-size: 24px;">🦁</span>
+                <span id="selectedName" style="flex: 1; font-weight: bold;">Tap to choose animal</span>
+                <span>▼</span>
             </div>
-            <datalist id="animalsList">
-                <option value="Hyena">🐺</option>
-                <option value="Wild Dog">🐕</option>
-                <option value="Ostrich">🦆</option>
-                <option value="Flamingo">🦩</option>
-                <option value="Pelican">🦢</option>
-                <option value="Stork">🦤</option>
-                <option value="Parrot">🦜</option>
-                <option value="Hornbill">🐦</option>
-                <option value="Mongoose">🦦</option>
-                <option value="Meerkat">🐿️</option>
-                <option value="Porcupine">🦔</option>
-                <option value="Honey Badger">🦡</option>
-                <option value="Pangolin">🦥</option>
-                <option value="Aardvark">🐖</option>
-                <option value="Bushbaby">🐒</option>
-                <option value="Vervet Monkey">🐵</option>
-                <option value="Chameleon">🦎</option>
-                <option value="Python">🐍</option>
-                <option value="Cobra">🐍</option>
-                <option value="Tortoise">🐢</option>
-                <option value="Monitor Lizard">🦎</option>
-                <option value="Frog">🐸</option>
-                <option value="Impala">🦌</option>
-                <option value="Gazelle">🦌</option>
-                <option value="Kudu">🦌</option>
-                <option value="Springbok">🦌</option>
-                <option value="Waterbuck">🦌</option>
-                <option value="Eland">🐂</option>
-                <option value="Wildebeest">🐃</option>
-                <option value="Nyala">🦌</option>
-                <option value="Bushbuck">🦌</option>
-                <option value="Dik-dik">🦌</option>
-                <option value="Jackal">🦊</option>
-                <option value="Serval">🐈</option>
-                <option value="Caracal">🐈</option>
-                <option value="Civet">🦝</option>
-                <option value="Genet">🐈</option>
-                <option value="Bat">🦇</option>
-                <option value="Butterfly">🦋</option>
-                <option value="Beetle">🪲</option>
-                <option value="Spider">🕷️</option>
-                <option value="Scorpion">🦂</option>
-            </datalist>
             <input type="number" id="modalCount" placeholder="Count" value="1" min="1">
             <input type="text" id="modalNotes" placeholder="Notes (optional)">
             <div class="tip-box">
-                💡 Tip: Choose from 40+ safari animals in the dropdown, or type any animal name! Add any emoji you want in the first field.
+                💡 Tip: Choose from 40+ safari animals in the picker, or type a custom name.
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                <button class="btn btn-primary" onclick="saveModal()">Save Sighting</button>
+                <button class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveModalBtn">Save Sighting</button>
             </div>
         </div>
     </div>
 
-    <!-- Setup Modal -->
     <div class="modal active" id="setupModal">
         <div class="modal-content">
             <div class="family-badge" style="margin-bottom: 15px;">GOWSTERS FAMILY</div>
             <h2>🦁 Welcome to Safari Tracker!</h2>
-            <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Let's set up your tracker for the Gowsters family safari adventure!</p>
+            <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Let's set up your tracker for the Gowsters
+                family safari adventure!</p>
             <input type="text" id="setupName" placeholder="Your name (e.g., Sam)">
             <input type="text" id="serverUrl" placeholder="Server URL (optional)">
             <input type="password" id="serverPassword" placeholder="Family password (optional)">
@@ -791,50 +939,66 @@
                 💡 Got a link from family? Just use that link and it'll set everything up automatically!
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" onclick="skipSetup()">Use Offline Only</button>
-                <button class="btn btn-primary" onclick="saveSetup()">Start Tracking!</button>
+                <button class="btn btn-secondary" id="skipSetupBtn">Use Offline Only</button>
+                <button class="btn btn-primary" id="saveSetupBtn">Start Tracking!</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="animal-picker-modal" id="animalPickerModal">
+        <div class="animal-picker-content">
+            <h2>Choose Animal</h2>
+            <input type="text" class="animal-search-box" id="animalSearch" placeholder="Search animals..."
+                autocomplete="off">
+
+            <div class="animals-picker-grid" id="animalPickerGrid">
+                </div>
+
+            <div class="animal-picker-custom" id="setCustomAnimalBtn">
+                ✏️ Type Custom Animal Name
+            </div>
+
+            <div class="modal-actions" style="margin-top: 20px;">
+                <button class="btn btn-secondary" id="closeAnimalPickerBtn">Cancel</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Common safari animals with emojis
-        const commonAnimals = [
-            { name: 'Lion', emoji: '🦁' },
-            { name: 'Elephant', emoji: '🐘' },
-            { name: 'Giraffe', emoji: '🦒' },
-            { name: 'Zebra', emoji: '🦓' },
-            { name: 'Rhino', emoji: '🦏' },
-            { name: 'Hippo', emoji: '🦛' },
-            { name: 'Leopard', emoji: '🐆' },
-            { name: 'Cheetah', emoji: '🐆' },
-            { name: 'Buffalo', emoji: '🐃' },
-            { name: 'Antelope', emoji: '🦌' },
-            { name: 'Warthog', emoji: '🐗' },
-            { name: 'Baboon', emoji: '🐵' },
-            { name: 'Crocodile', emoji: '🐊' },
-            { name: 'Eagle', emoji: '🦅' },
-            { name: 'Vulture', emoji: '🦅' }
+        const allAnimals = [
+            { name: 'Lion', emoji: '🦁', isCommon: true }, { name: 'Elephant', emoji: '🐘', isCommon: true },
+            { name: 'Giraffe', emoji: '🦒', isCommon: true }, { name: 'Zebra', emoji: '🦓', isCommon: true },
+            { name: 'Rhino', emoji: '🦏', isCommon: true }, { name: 'Hippo', emoji: '🦛', isCommon: true },
+            { name: 'Leopard', emoji: '🐆', isCommon: true }, { name: 'Cheetah', emoji: '🐆', isCommon: true },
+            { name: 'Buffalo', emoji: '🐃', isCommon: true }, { name: 'Antelope', emoji: '🦌', isCommon: true },
+            { name: 'Warthog', emoji: '🐗', isCommon: true }, { name: 'Baboon', emoji: '🐵', isCommon: true },
+            { name: 'Crocodile', emoji: '🐊', isCommon: true }, { name: 'Eagle', emoji: '🦅', isCommon: true },
+            { name: 'Vulture', emoji: '🦅', isCommon: true },
+            { name: 'Hyena', emoji: '🐺', isCommon: false }, { name: 'Wild Dog', emoji: '🐕', isCommon: false },
+            { name: 'Ostrich', emoji: '🦆', isCommon: false }, { name: 'Flamingo', emoji: '🦩', isCommon: false },
+            { name: 'Pelican', emoji: '🦢', isCommon: false }, { name: 'Stork', emoji: '🦤', isCommon: false },
+            { name: 'Parrot', emoji: '🦜', isCommon: false }, { name: 'Hornbill', emoji: '🐦', isCommon: false },
+            { name: 'Mongoose', emoji: '🦦', isCommon: false }, { name: 'Meerkat', emoji: '🐿️', isCommon: false },
+            { name: 'Porcupine', emoji: '🦔', isCommon: false }, { name: 'Honey Badger', emoji: '🦡', isCommon: false },
+            { name: 'Pangolin', emoji: '🦥', isCommon: false }, { name: 'Aardvark', emoji: '🐖', isCommon: false },
+            { name: 'Bushbaby', emoji: '🐒', isCommon: false }, { name: 'Vervet Monkey', emoji: '🐵', isCommon: false },
+            { name: 'Chameleon', emoji: '🦎', isCommon: false }, { name: 'Python', emoji: '🐍', isCommon: false },
+            { name: 'Cobra', emoji: '🐍', isCommon: false }, { name: 'Tortoise', emoji: '🐢', isCommon: false },
+            { name: 'Monitor Lizard', emoji: '🦎', isCommon: false }, { name: 'Frog', emoji: '🐸', isCommon: false },
+            { name: 'Impala', emoji: '🦌', isCommon: false }, { name: 'Gazelle', emoji: '🦌', isCommon: false },
+            { name: 'Kudu', emoji: '🦌', isCommon: false }, { name: 'Springbok', emoji: '🦌', isCommon: false },
+            { name: 'Waterbuck', emoji: '🦌', isCommon: false }, { name: 'Eland', emoji: '🐂', isCommon: false },
+            { name: 'Wildebeest', emoji: '🐃', isCommon: false }, { name: 'Nyala', emoji: '🦌', isCommon: false },
+            { name: 'Bushbuck', emoji: '🦌', isCommon: false }, { name: 'Dik-dik', emoji: '🦌', isCommon: false },
+            { name: 'Jackal', emoji: '🦊', isCommon: false }, { name: 'Serval', emoji: '🐈', isCommon: false },
+            { name: 'Caracal', emoji: '🐈', isCommon: false }, { name: 'Civet', emoji: '🦝', isCommon: false },
+            { name: 'Genet', emoji: '🐈', isCommon: false }, { name: 'Bat', emoji: '🦇', isCommon: false },
+            { name: 'Butterfly', emoji: '🦋', isCommon: false }, { name: 'Beetle', emoji: '🪲', isCommon: false },
+            { name: 'Spider', emoji: '🕷️', isCommon: false }, { name: 'Scorpion', emoji: '🦂', isCommon: false }
         ];
 
-        // Extended animal list with emojis for dropdown
-        const additionalAnimals = {
-            'Hyena': '🐺', 'Wild Dog': '🐕', 'Ostrich': '🦆', 'Flamingo': '🦩',
-            'Pelican': '🦢', 'Stork': '🦤', 'Parrot': '🦜', 'Hornbill': '🐦',
-            'Mongoose': '🦦', 'Meerkat': '🐿️', 'Porcupine': '🦔', 'Honey Badger': '🦡',
-            'Pangolin': '🦥', 'Aardvark': '🐖', 'Bushbaby': '🐒', 'Vervet Monkey': '🐵',
-            'Chameleon': '🦎', 'Python': '🐍', 'Cobra': '🐍', 'Tortoise': '🐢',
-            'Monitor Lizard': '🦎', 'Frog': '🐸', 'Impala': '🦌', 'Gazelle': '🦌',
-            'Kudu': '🦌', 'Springbok': '🦌', 'Waterbuck': '🦌', 'Eland': '🐂',
-            'Wildebeest': '🐃', 'Nyala': '🦌', 'Bushbuck': '🦌', 'Dik-dik': '🦌',
-            'Jackal': '🦊', 'Serval': '🐈', 'Caracal': '🐈', 'Civet': '🦝',
-            'Genet': '🐈', 'Bat': '🦇', 'Butterfly': '🦋', 'Beetle': '🪲',
-            'Spider': '🕷️', 'Scorpion': '🦂'
-        };
-
-        // Track custom animals and their emojis
+        // State variables
         let customAnimals = {};
-
         let sightings = [];
         let config = {
             userName: '',
@@ -844,64 +1008,76 @@
         };
         let isOnline = false;
         let editingSighting = null;
+        let modalState = { name: '', emoji: '' };
 
-        // Initialize
+        // Core Functions
         function init() {
-            // Parse URL parameters first
             const urlParams = new URLSearchParams(window.location.search);
             const urlName = urlParams.get('name');
             const urlPassword = urlParams.get('password');
             const urlServer = urlParams.get('server');
-            
+
             loadConfig();
             loadSightings();
             
-            // Apply URL parameters if provided and no existing config
-            let hasUrlConfig = false;
-            if (!config.serverUrl && (urlName || urlServer || urlPassword)) {
-                if (urlName) config.userName = decodeURIComponent(urlName);
-                if (urlPassword) config.password = decodeURIComponent(urlPassword);
-                if (urlServer) config.serverUrl = decodeURIComponent(urlServer);
+            // MODIFIED: This logic now ensures the setup modal always appears on a normal page load,
+            // but is skipped if the user arrives via a shared link with URL parameters.
+            if (urlName || urlServer || urlPassword) {
+                // If URL params are present, auto-configure and hide the modal.
+                config.userName = urlName ? decodeURIComponent(urlName) : config.userName;
+                config.password = urlPassword ? decodeURIComponent(urlPassword) : config.password;
+                config.serverUrl = urlServer ? decodeURIComponent(urlServer) : config.serverUrl;
                 saveConfig();
-                hasUrlConfig = true;
-            }
-            
-            // Skip setup modal if we have URL parameters or existing config
-            if (config.userName || config.serverUrl || hasUrlConfig) {
                 document.getElementById('setupModal').classList.remove('active');
             } else {
-                // Pre-fill setup modal with URL params if available
-                if (urlName) document.getElementById('setupName').value = decodeURIComponent(urlName);
-                if (urlServer) document.getElementById('serverUrl').value = decodeURIComponent(urlServer);
-                if (urlPassword) document.getElementById('serverPassword').value = decodeURIComponent(urlPassword);
+                // On a normal load, ensure the modal is visible but pre-fill any saved data.
+                document.getElementById('setupName').value = config.userName || '';
+                document.getElementById('serverUrl').value = config.serverUrl || '';
+                document.getElementById('serverPassword').value = config.password || '';
             }
-            
+
+            // The rest of the app initializes, and the user interacts with the modal.
             if (config.serverUrl) {
                 checkOnlineStatus();
-                setInterval(checkOnlineStatus, 10000); // Check every 10 seconds
-                setInterval(autoSync, 15000); // Auto-sync every 15 seconds
+                setInterval(checkOnlineStatus, 10000);
+                setInterval(autoSync, 15000);
             }
-            
+
+            addEventListeners();
             renderAnimals();
             updateDisplay();
             updateWelcomeMessage();
-            
             document.getElementById('userName').value = config.userName || '';
+        }
+
+        function addEventListeners() {
             document.getElementById('userName').addEventListener('change', (e) => {
                 config.userName = e.target.value;
                 saveConfig();
                 updateWelcomeMessage();
             });
+            document.getElementById('forceSyncBtn').addEventListener('click', () => syncNow(true));
+            document.getElementById('exportDataBtn').addEventListener('click', exportData);
+            document.getElementById('backupBtn').addEventListener('click', downloadBackup);
+            document.getElementById('restoreBtn').addEventListener('click', () => document.getElementById('restoreFile').click());
+            document.getElementById('restoreFile').addEventListener('change', restoreBackup);
+            document.getElementById('shareLinkBtn').addEventListener('click', shareLink);
+            document.getElementById('openAnimalPickerBtn').addEventListener('click', openAnimalPicker);
+            document.getElementById('cancelModalBtn').addEventListener('click', closeModal);
+            document.getElementById('saveModalBtn').addEventListener('click', saveModal);
+            document.getElementById('skipSetupBtn').addEventListener('click', skipSetup);
+            document.getElementById('saveSetupBtn').addEventListener('click', saveSetup);
+            document.getElementById('animalSearch').addEventListener('input', (e) => renderAnimalPicker(e.target.value));
+            document.getElementById('setCustomAnimalBtn').addEventListener('click', setCustomAnimal);
+            document.getElementById('closeAnimalPickerBtn').addEventListener('click', closeAnimalPicker);
         }
 
         function updateWelcomeMessage() {
             const welcomeEl = document.getElementById('welcomeMessage');
             if (config.userName) {
                 const greetings = [
-                    `Happy spotting, ${config.userName}! 🌍`,
-                    `${config.userName}'s wildlife adventure 🦒`,
-                    `Let's find some animals, ${config.userName}! 🐘`,
-                    `${config.userName} on safari! 🦁`
+                    `Happy spotting, ${config.userName}! 🌍`, `${config.userName}'s wildlife adventure 🦒`,
+                    `Let's find some animals, ${config.userName}! 🐘`, `${config.userName} on safari! 🦁`
                 ];
                 welcomeEl.textContent = greetings[Math.floor(Math.random() * greetings.length)];
             } else {
@@ -913,11 +1089,10 @@
             return Date.now().toString(36) + Math.random().toString(36).substr(2);
         }
 
+        // Data Persistence
         function loadConfig() {
             const saved = localStorage.getItem('safariConfig');
-            if (saved) {
-                config = { ...config, ...JSON.parse(saved) };
-            }
+            if (saved) config = { ...config, ...JSON.parse(saved) };
         }
 
         function saveConfig() {
@@ -925,14 +1100,10 @@
         }
 
         function loadSightings() {
-            const saved = localStorage.getItem('safariSightings');
-            if (saved) {
-                sightings = JSON.parse(saved);
-            }
+            const savedSightings = localStorage.getItem('safariSightings');
+            if (savedSightings) sightings = JSON.parse(savedSightings);
             const savedCustom = localStorage.getItem('customAnimals');
-            if (savedCustom) {
-                customAnimals = JSON.parse(savedCustom);
-            }
+            if (savedCustom) customAnimals = JSON.parse(savedCustom);
         }
 
         function saveSightings() {
@@ -941,29 +1112,24 @@
             updateDisplay();
         }
 
+        // Setup and Modals
         function saveSetup() {
             config.userName = document.getElementById('setupName').value || 'Anonymous Gowster';
             config.serverUrl = document.getElementById('serverUrl').value;
             config.password = document.getElementById('serverPassword').value;
-            
             if (config.serverUrl && !config.serverUrl.startsWith('http')) {
                 config.serverUrl = 'https://' + config.serverUrl;
             }
-            
             saveConfig();
             document.getElementById('setupModal').classList.remove('active');
             document.getElementById('userName').value = config.userName;
             updateWelcomeMessage();
-            
             if (config.serverUrl) {
                 checkOnlineStatus();
                 setInterval(checkOnlineStatus, 10000);
                 setInterval(autoSync, 30000);
             }
         }
-        
-        // Make saveSetup available globally
-        window.saveSetup = saveSetup;
 
         function skipSetup() {
             config.userName = 'Anonymous Gowster';
@@ -972,200 +1138,82 @@
             document.getElementById('userName').value = config.userName;
             updateWelcomeMessage();
         }
-        
-        // Make skipSetup available globally
-        window.skipSetup = skipSetup;
-
-        function renderAnimals() {
-            const grid = document.getElementById('animalsGrid');
-            grid.innerHTML = '';
-            
-            // Render common animals
-            commonAnimals.forEach((animal, index) => {
-                const count = sightings.filter(s => s.animal === animal.name && !s.deleted).length;
-                const btn = document.createElement('div');
-                btn.className = 'animal-btn';
-                btn.style.setProperty('--index', index);
-                btn.innerHTML = `
-                    <div class="animal-emoji">${animal.emoji}</div>
-                    <div class="animal-name">${animal.name}</div>
-                    <div class="animal-count" id="count-${animal.name.replace(/\s/g, '')}">${count}</div>
-                `;
-                btn.onclick = () => addSighting(animal.name, 1, '', animal.emoji);
-                grid.appendChild(btn);
-            });
-            
-            // Render custom animals that have been tracked
-            Object.entries(customAnimals).forEach(([name, emoji], index) => {
-                // Skip if already in common animals
-                if (commonAnimals.some(a => a.name === name)) return;
-                
-                const count = sightings.filter(s => s.animal === name && !s.deleted).length;
-                if (count > 0) {
-                    const btn = document.createElement('div');
-                    btn.className = 'animal-btn';
-                    btn.style.setProperty('--index', commonAnimals.length + index);
-                    btn.innerHTML = `
-                        <div class="animal-emoji">${emoji || '🦴'}</div>
-                        <div class="animal-name">${name}</div>
-                        <div class="animal-count" id="count-${name.replace(/\s/g, '')}">${count}</div>
-                    `;
-                    btn.onclick = () => addSighting(name, 1, '', emoji);
-                    grid.appendChild(btn);
-                }
-            });
-            
-            // Add custom button
-            const customBtn = document.createElement('div');
-            customBtn.className = 'animal-btn add-custom';
-            customBtn.innerHTML = `
-                <div class="animal-emoji">➕</div>
-                <div class="animal-name">Add Animal</div>
-            `;
-            customBtn.onclick = () => openModal();
-            grid.appendChild(customBtn);
-        }
-        
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'fadeOutNotification 0.3s ease-out';
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
-        }
-        
-        // Make showNotification available globally
-        window.showNotification = showNotification;
-        
-        function showSuccessAnimation() {
-            showNotification('✨ Logged!', 'success');
-        }
-
-        function addSighting(animal, count = 1, notes = '', emoji = '') {
-            const sighting = {
-                id: generateId(),
-                animal,
-                emoji: emoji || customAnimals[animal] || '🦴',
-                count: parseInt(count),
-                notes,
-                timestamp: new Date().toISOString(),
-                user: config.userName || 'Anonymous Gowster',
-                deviceId: config.deviceId,
-                synced: false,
-                deleted: false
-            };
-            
-            // Store custom animal emoji if new
-            let isNewCustomAnimal = false;
-            if (emoji && !commonAnimals.some(a => a.name === animal) && !customAnimals[animal]) {
-                customAnimals[animal] = emoji;
-                isNewCustomAnimal = true;
-            }
-            
-            sightings.push(sighting);
-            saveSightings();
-            
-            if (isNewCustomAnimal) {
-                renderAnimals(); // Re-render to show new custom animal
-            } else {
-                updateAnimalCount(animal);
-            }
-            
-            showSuccessAnimation();
-        }
-
-        function updateAnimalCount(animal) {
-            const countEl = document.getElementById(`count-${animal.replace(/\s/g, '')}`);
-            if (countEl) {
-                const count = sightings.filter(s => s.animal === animal && !s.deleted).length;
-                countEl.textContent = count;
-                countEl.classList.add('pop');
-                setTimeout(() => countEl.classList.remove('pop'), 300);
-            } else {
-                // If element doesn't exist, it might be a new custom animal, re-render
-                renderAnimals();
-            }
-        }
 
         function openModal(sighting = null) {
             editingSighting = sighting;
             const modal = document.getElementById('editModal');
-            
+            document.getElementById('modalTitle').textContent = sighting ? 'Edit Sighting' : 'Add Animal Sighting';
+
             if (sighting) {
-                document.getElementById('modalTitle').textContent = 'Edit Sighting';
-                document.getElementById('modalAnimal').value = sighting.animal;
-                document.getElementById('modalEmoji').value = sighting.emoji || '';
+                modalState.name = sighting.animal;
+                modalState.emoji = sighting.emoji || '🦴';
+                document.getElementById('selectedName').textContent = sighting.animal;
+                document.getElementById('selectedEmoji').textContent = sighting.emoji || '🦴';
                 document.getElementById('modalCount').value = sighting.count;
                 document.getElementById('modalNotes').value = sighting.notes || '';
             } else {
-                document.getElementById('modalTitle').textContent = 'Add Animal Sighting';
-                document.getElementById('modalAnimal').value = '';
-                document.getElementById('modalEmoji').value = '';
+                modalState.name = '';
+                modalState.emoji = '🦁';
+                document.getElementById('selectedName').textContent = 'Tap to choose animal';
+                document.getElementById('selectedEmoji').textContent = '🦁';
                 document.getElementById('modalCount').value = '1';
                 document.getElementById('modalNotes').value = '';
             }
-            
             modal.classList.add('active');
         }
-        
-        // Make openModal available globally for inline onclick
-        window.openModal = openModal;
 
         function closeModal() {
             document.getElementById('editModal').classList.remove('active');
             editingSighting = null;
         }
-        
-        // Make closeModal available globally
-        window.closeModal = closeModal;
 
         function saveModal() {
-            const animal = document.getElementById('modalAnimal').value.trim();
-            const emoji = document.getElementById('modalEmoji').value.trim() || '🦴';
+            const animal = modalState.name.trim();
+            const emoji = modalState.emoji.trim() || '🦴';
             const count = document.getElementById('modalCount').value;
             const notes = document.getElementById('modalNotes').value.trim();
-            
-            if (!animal) {
-                showNotification('Please enter an animal name', 'error');
-                return;
-            }
-            
+            if (!animal) return showNotification('Please enter an animal name', 'error');
+
+            const isBuiltInAnimal = allAnimals.some(a => a.name === animal);
+
             if (editingSighting) {
                 const oldAnimal = editingSighting.animal;
-                editingSighting.animal = animal;
-                editingSighting.emoji = emoji;
-                editingSighting.count = parseInt(count);
-                editingSighting.notes = notes;
-                editingSighting.synced = false;
-                
-                // Update custom animals record
-                if (!commonAnimals.some(a => a.name === animal)) {
-                    customAnimals[animal] = emoji;
-                }
-                
+                Object.assign(editingSighting, { animal, emoji, count: parseInt(count), notes, synced: false });
+                if (!isBuiltInAnimal) customAnimals[animal] = emoji;
                 saveSightings();
-                
-                // Re-render if animal name changed
-                if (oldAnimal !== animal) {
-                    renderAnimals();
-                } else {
-                    updateAnimalCount(animal);
-                }
-                
                 showNotification('✏️ Updated!', 'success');
+                if (oldAnimal !== animal) renderAnimals();
+                else updateAnimalCount(animal);
             } else {
                 addSighting(animal, count, notes, emoji);
             }
-            
             closeModal();
         }
-        
-        // Make saveModal available globally
-        window.saveModal = saveModal;
+
+        // Sightings Management
+        function addSighting(animal, count = 1, notes = '', emoji = '') {
+            const isBuiltInAnimal = allAnimals.some(a => a.name === animal);
+            const isNewCustomAnimal = !isBuiltInAnimal && !customAnimals[animal];
+            if (isNewCustomAnimal) customAnimals[animal] = emoji;
+
+            sightings.push({
+                id: generateId(), animal, emoji: emoji || customAnimals[animal] || '🦴',
+                count: parseInt(count), notes, timestamp: new Date().toISOString(),
+                user: config.userName || 'Anonymous Gowster', deviceId: config.deviceId,
+                synced: false, deleted: false
+            });
+
+            saveSightings();
+            showNotification('✨ Logged!', 'success');
+
+            if (isNewCustomAnimal) renderAnimals();
+            else updateAnimalCount(animal);
+        }
+
+        function editSighting(id) {
+            const sighting = sightings.find(s => s.id === id);
+            if (sighting) openModal(sighting);
+        }
 
         function deleteSighting(id) {
             const sighting = sightings.find(s => s.id === id);
@@ -1176,139 +1224,137 @@
                 showNotification('🗑️ Deleted', 'error');
             }
         }
-        
-        function editSighting(id) {
-            const sighting = sightings.find(s => s.id === id);
-            if (sighting) {
-                openModal(sighting);
-            }
+
+        // UI Rendering
+        function renderAnimals() {
+            const grid = document.getElementById('animalsGrid');
+            grid.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+            const commonAnimals = allAnimals.filter(a => a.isCommon);
+
+            const createAnimalButton = (animal, index) => {
+                const count = sightings.filter(s => s.animal === animal.name && !s.deleted).length;
+                const btn = document.createElement('div');
+                btn.className = 'animal-btn';
+                btn.style.setProperty('--index', index);
+                btn.innerHTML = `<div class="animal-emoji">${animal.emoji}</div><div class="animal-name">${animal.name}</div><div class="animal-count" id="count-${animal.name.replace(/\s/g, '')}">${count}</div>`;
+                btn.addEventListener('click', () => addSighting(animal.name, 1, '', animal.emoji));
+                return btn;
+            };
+
+            commonAnimals.forEach((animal, index) => fragment.appendChild(createAnimalButton(animal, index)));
+
+            Object.entries(customAnimals).forEach(([name, emoji], index) => {
+                if (allAnimals.some(a => a.name === name)) return;
+                if (sightings.some(s => s.animal === name && !s.deleted)) {
+                    fragment.appendChild(createAnimalButton({ name, emoji }, commonAnimals.length + index));
+                }
+            });
+
+            const customBtn = document.createElement('div');
+            customBtn.className = 'animal-btn add-custom';
+            customBtn.innerHTML = `<div class="animal-emoji">➕</div><div class="animal-name">Add Animal</div>`;
+            customBtn.addEventListener('click', () => openModal());
+            fragment.appendChild(customBtn);
+            grid.appendChild(fragment);
         }
-        
-        // Make editSighting available globally
-        window.editSighting = editSighting;
 
         function updateDisplay() {
-            // Update counts
+            // Update summary stats
             const activeSightings = sightings.filter(s => !s.deleted);
             const totalCount = activeSightings.reduce((sum, s) => sum + s.count, 0);
             const uniqueCount = new Set(activeSightings.map(s => s.animal)).size;
-            
             const today = new Date().toDateString();
-            const todayCount = activeSightings
-                .filter(s => new Date(s.timestamp).toDateString() === today)
-                .reduce((sum, s) => sum + s.count, 0);
-            
+            const todayCount = activeSightings.filter(s => new Date(s.timestamp).toDateString() === today).reduce((sum, s) => sum + s.count, 0);
             const pendingCount = sightings.filter(s => !s.synced).length;
-            
+
             document.getElementById('totalSightings').textContent = totalCount;
             document.getElementById('uniqueAnimals').textContent = uniqueCount;
             document.getElementById('todaySightings').textContent = todayCount;
             document.getElementById('pendingSync').textContent = pendingCount;
-            
-            // Update sync status with pending count
-            if (isOnline && config.serverUrl) {
-                const status = document.getElementById('syncStatus');
-                if (pendingCount > 0) {
-                    status.textContent = `🌐 Online (${pendingCount} pending)`;
-                } else {
-                    status.textContent = '🌐 All synced';
-                }
-            }
-            
+            updateOnlineStatus(isOnline);
+
             // Update recent sightings list
             const list = document.getElementById('sightingsList');
             list.innerHTML = '';
-            
-            const recent = [...activeSightings]
-                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-                .slice(0, 10);
-            
-            recent.forEach(sighting => {
+            const fragment = document.createDocumentFragment();
+            [...activeSightings].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 10).forEach(sighting => {
                 const item = document.createElement('div');
                 item.className = 'sighting-item';
-                
-                const time = new Date(sighting.timestamp);
-                const timeStr = time.toLocaleString();
-                
-                // Get emoji for display
-                let emoji = sighting.emoji;
-                if (!emoji) {
-                    const commonAnimal = commonAnimals.find(a => a.name === sighting.animal);
-                    emoji = commonAnimal ? commonAnimal.emoji : (customAnimals[sighting.animal] || '🦴');
-                }
-                
+                const emoji = sighting.emoji || '🦴';
                 item.innerHTML = `
                     <div class="sighting-info">
                         <strong>${emoji} ${sighting.count} × ${sighting.animal}</strong>
-                        <span class="sighting-user">${sighting.user}</span>
-                        <br>
-                        <small style="color: #999;">${timeStr}</small>
+                        <span class="sighting-user">${sighting.user}</span><br>
+                        <small style="color: #999;">${new Date(sighting.timestamp).toLocaleString()}</small>
                         ${sighting.notes ? `<br><small style="color: #666;">📝 ${sighting.notes}</small>` : ''}
                     </div>
                     <div class="sighting-actions">
-                        <button class="btn-small btn-edit" onclick="editSighting('${sighting.id}')">✏️</button>
-                        <button class="btn-small btn-delete" onclick="deleteSighting('${sighting.id}')">🗑️</button>
-                    </div>
-                `;
-                
-                list.appendChild(item);
+                        <button class="btn-small btn-edit">✏️</button>
+                        <button class="btn-small btn-delete">🗑️</button>
+                    </div>`;
+                item.querySelector('.btn-edit').addEventListener('click', () => editSighting(sighting.id));
+                item.querySelector('.btn-delete').addEventListener('click', () => deleteSighting(sighting.id));
+                fragment.appendChild(item);
             });
-            
+            list.appendChild(fragment);
+
             // Update all animal counts
-            commonAnimals.forEach(animal => {
-                updateAnimalCount(animal.name);
-            });
+            allAnimals.filter(a => a.isCommon).forEach(animal => updateAnimalCount(animal.name));
+            Object.keys(customAnimals).forEach(name => updateAnimalCount(name));
         }
 
-        async function checkOnlineStatus() {
-            if (!config.serverUrl) {
-                updateOnlineStatus(false);
-                return;
+        function updateAnimalCount(animal) {
+            const countEl = document.getElementById(`count-${animal.replace(/\s/g, '')}`);
+            if (countEl) {
+                const count = sightings.filter(s => s.animal === animal && !s.deleted).length;
+                countEl.textContent = count;
+                countEl.classList.add('pop');
+                setTimeout(() => countEl.classList.remove('pop'), 300);
             }
-            
-            // Use requestIdleCallback to avoid blocking UI
-            const checkStatus = async () => {
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.animation = 'fadeOutNotification 0.3s ease-out forwards';
+                notification.addEventListener('animationend', () => notification.remove());
+            }, 2000);
+        }
+
+        // Networking and Sync
+        async function checkOnlineStatus() {
+            if (!config.serverUrl) return updateOnlineStatus(false);
+            const check = async () => {
                 try {
-                    // Create a timeout promise
-                    const timeoutPromise = new Promise((_, reject) => 
-                        setTimeout(() => reject(new Error('Timeout')), 3000)
-                    );
-                    
-                    const fetchPromise = fetch(config.serverUrl + '/health', {
-                        method: 'GET',
-                        headers: {
-                            'X-Password': config.password
-                        }
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 3000);
+                    const response = await fetch(`${config.serverUrl}/health`, {
+                        headers: { 'X-Password': config.password },
+                        signal: controller.signal
                     });
-                    
-                    const response = await Promise.race([fetchPromise, timeoutPromise]);
+                    clearTimeout(timeoutId);
                     updateOnlineStatus(response.ok);
                 } catch (error) {
                     updateOnlineStatus(false);
                 }
             };
-            
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(checkStatus);
-            } else {
-                setTimeout(checkStatus, 0);
-            }
+            if ('requestIdleCallback' in window) requestIdleCallback(check);
+            else setTimeout(check, 0);
         }
 
         function updateOnlineStatus(online) {
             isOnline = online;
             const status = document.getElementById('syncStatus');
-            
+            const pendingCount = sightings.filter(s => !s.synced).length;
             if (!config.serverUrl) {
                 status.textContent = '📵 Offline Only';
                 status.className = 'sync-status offline';
             } else if (online) {
-                const pendingCount = sightings.filter(s => !s.synced).length;
-                if (pendingCount > 0) {
-                    status.textContent = `🌐 Online (${pendingCount} pending)`;
-                } else {
-                    status.textContent = '🌐 All synced';
-                }
+                status.textContent = pendingCount > 0 ? `🌐 Online (${pendingCount} pending)` : '🌐 All synced';
                 status.className = 'sync-status online';
             } else {
                 status.textContent = '📵 Offline';
@@ -1318,167 +1364,88 @@
 
         async function syncNow(showFeedback = true) {
             if (!isOnline || !config.serverUrl) {
-                if (showFeedback) {
-                    showNotification('📵 Cannot sync - offline', 'error');
-                }
+                if (showFeedback) showNotification('📵 Cannot sync - offline', 'error');
                 return;
             }
-            
-            // Run sync in background to avoid blocking UI
             const performSync = async () => {
                 try {
-                    // Send unsynced sightings
                     const unsynced = sightings.filter(s => !s.synced);
-                    
                     if (unsynced.length > 0) {
-                        const response = await fetch(config.serverUrl + '/sync', {
+                        const postRes = await fetch(`${config.serverUrl}/sync`, {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-Password': config.password
-                            },
-                            body: JSON.stringify({
-                                deviceId: config.deviceId,
-                                sightings: unsynced
-                            })
+                            headers: { 'Content-Type': 'application/json', 'X-Password': config.password },
+                            body: JSON.stringify({ deviceId: config.deviceId, sightings: unsynced })
                         });
-                        
-                        if (response.ok) {
-                            // Mark as synced
-                            unsynced.forEach(s => s.synced = true);
-                            saveSightings();
-                        }
+                        if (postRes.ok) unsynced.forEach(s => s.synced = true);
                     }
-                    
-                    // Get all sightings from server
-                    const response = await fetch(config.serverUrl + '/sightings', {
-                        headers: {
-                            'X-Password': config.password
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        const serverSightings = await response.json();
-                        const newCount = mergeSightings(serverSightings);
-                        if (showFeedback) {
-                            if (newCount > 0) {
-                                showNotification(`🔄 Synced! ${newCount} new sightings`, 'success');
-                            } else {
-                                showNotification('✅ All synced', 'success');
-                            }
-                        }
+                    const getRes = await fetch(`${config.serverUrl}/sightings`, { headers: { 'X-Password': config.password } });
+                    if (getRes.ok) {
+                        const serverSightings = await getRes.json();
+                        mergeSightings(serverSightings);
+                        if (showFeedback) showNotification('✅ All synced', 'success');
+                    } else {
+                        throw new Error('Failed to fetch sightings');
                     }
                 } catch (error) {
-                    console.error('Sync error:', error);
-                    if (showFeedback) {
-                        showNotification('❌ Sync failed', 'error');
-                    }
+                    if (showFeedback) showNotification('❌ Sync failed', 'error');
                 }
             };
-            
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(() => performSync());
-            } else {
-                setTimeout(performSync, 0);
-            }
+            if ('requestIdleCallback' in window) requestIdleCallback(performSync);
+            else setTimeout(performSync, 0);
         }
-        
-        // Make syncNow available globally
-        window.syncNow = syncNow;
 
         function mergeSightings(serverSightings) {
             const localIds = new Set(sightings.map(s => s.id));
-            
             serverSightings.forEach(serverSighting => {
                 if (!localIds.has(serverSighting.id)) {
                     sightings.push({ ...serverSighting, synced: true });
-                    
-                    // Store custom animal emoji if new
-                    if (serverSighting.emoji && !commonAnimals.some(a => a.name === serverSighting.animal)) {
+                    const isBuiltIn = allAnimals.some(a => a.name === serverSighting.animal);
+                    if (serverSighting.emoji && !isBuiltIn) {
                         customAnimals[serverSighting.animal] = serverSighting.emoji;
                     }
                 }
             });
-            
             saveSightings();
         }
 
         async function autoSync() {
-            if (isOnline && config.serverUrl) {
-                const unsynced = sightings.filter(s => !s.synced);
-                if (unsynced.length > 0) {
-                    await syncNow();
-                }
+            if (isOnline && config.serverUrl && sightings.some(s => !s.synced)) {
+                await syncNow(false);
             }
         }
 
+        // Data Utilities
         function exportData() {
             const data = sightings.filter(s => !s.deleted);
-            
-            // Helper function to escape CSV values
-            const escapeCSV = (str) => {
-                if (str == null) return '';
-                str = String(str);
-                if (str.includes(',') || str.includes('"') || str.includes('\n')) {
-                    return '"' + str.replace(/"/g, '""') + '"';
-                }
-                return str;
-            };
-            
+            const escapeCSV = (str) => `"${String(str || '').replace(/"/g, '""')}"`;
             const csv = [
-                ['Animal', 'Count', 'Date', 'Time', 'User', 'Notes'],
+                ['Animal', 'Count', 'Date', 'Time', 'User', 'Notes'].join(','),
                 ...data.map(s => {
-                    const date = new Date(s.timestamp);
-                    return [
-                        escapeCSV(s.animal),
-                        s.count,
-                        date.toLocaleDateString(),
-                        date.toLocaleTimeString(),
-                        escapeCSV(s.user),
-                        escapeCSV(s.notes || '')
-                    ];
+                    const d = new Date(s.timestamp);
+                    return [escapeCSV(s.animal), s.count, d.toLocaleDateString(), d.toLocaleTimeString(), escapeCSV(s.user), escapeCSV(s.notes)].join(',');
                 })
-            ].map(row => row.join(',')).join('\n');
-            
+            ].join('\n');
             downloadFile(csv, `gowsters-safari-${new Date().toISOString().split('T')[0]}.csv`, 'text/csv');
         }
-        
-        // Make exportData available globally
-        window.exportData = exportData;
 
         function downloadBackup() {
-            const backup = {
-                version: 1,
-                exportDate: new Date().toISOString(),
-                family: 'Gowsters',
-                config: config,
-                sightings: sightings,
-                customAnimals: customAnimals
-            };
-            
-            const json = JSON.stringify(backup, null, 2);
-            downloadFile(json, `gowsters-safari-backup-${new Date().toISOString().split('T')[0]}.json`, 'application/json');
+            const backup = { version: 1, exportDate: new Date().toISOString(), family: 'Gowsters', config, sightings, customAnimals };
+            downloadFile(JSON.stringify(backup, null, 2), `gowsters-safari-backup-${new Date().toISOString().split('T')[0]}.json`, 'application/json');
         }
-        
-        // Make downloadBackup available globally
-        window.downloadBackup = downloadBackup;
 
         function restoreBackup(event) {
             const file = event.target.files[0];
             if (!file) return;
-            
             const reader = new FileReader();
             reader.onload = (e) => {
                 try {
                     const backup = JSON.parse(e.target.result);
-                    
+                    if (!backup.config || !backup.sightings) throw new Error("Invalid format");
                     config = backup.config;
                     sightings = backup.sightings;
                     customAnimals = backup.customAnimals || {};
-                    
                     saveConfig();
                     saveSightings();
-                    
                     showNotification('✅ Backup restored!', 'success');
                     setTimeout(() => location.reload(), 1500);
                 } catch (error) {
@@ -1487,89 +1454,81 @@
             };
             reader.readAsText(file);
         }
-        
-        // Make restoreBackup available globally
-        window.restoreBackup = restoreBackup;
-        
+
         function shareLink() {
-            if (!config.serverUrl) {
-                showNotification('📵 Configure server first to share', 'error');
-                return;
-            }
-            
-            const baseUrl = window.location.origin + window.location.pathname;
-            const params = new URLSearchParams({
-                server: config.serverUrl,
-                password: config.password,
-                name: '' // Leave blank for them to fill
-            });
-            
-            const shareUrl = `${baseUrl}?${params.toString()}`;
-            
-            // Copy to clipboard
+            if (!config.serverUrl) return showNotification('📵 Configure server first to share', 'error');
+            const params = new URLSearchParams({ server: config.serverUrl, password: config.password, name: '' });
+            const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
             navigator.clipboard.writeText(shareUrl).then(() => {
                 showNotification('🔗 Link copied! Share with family', 'success');
-            }).catch(() => {
-                // Fallback for older browsers
-                const input = document.createElement('input');
-                input.value = shareUrl;
-                document.body.appendChild(input);
-                input.select();
-                document.execCommand('copy');
-                document.body.removeChild(input);
-                showNotification('🔗 Link copied! Share with family', 'success');
-            });
+            }).catch(() => showNotification('Could not copy link', 'error'));
         }
-        
-        // Make shareLink available globally
-        window.shareLink = shareLink;
 
         function downloadFile(content, filename, type) {
-            const blob = new Blob([content], { type });
-            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
+            a.href = URL.createObjectURL(new Blob([content], { type }));
             a.download = filename;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            URL.revokeObjectURL(url);
         }
 
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', function() {
-            init();
-            
-            // Set up auto-populate for emoji field after a small delay to ensure DOM is ready
-            setTimeout(() => {
-                const animalInput = document.getElementById('modalAnimal');
-                const emojiInput = document.getElementById('modalEmoji');
-                
-                if (animalInput && emojiInput) {
-                    animalInput.addEventListener('input', function() {
-                        const selectedAnimal = this.value;
-                        
-                        // Check common animals
-                        const commonAnimal = commonAnimals.find(a => a.name === selectedAnimal);
-                        if (commonAnimal) {
-                            emojiInput.value = commonAnimal.emoji;
-                            return;
-                        }
-                        
-                        // Check additional animals
-                        if (additionalAnimals[selectedAnimal]) {
-                            emojiInput.value = additionalAnimals[selectedAnimal];
-                            return;
-                        }
-                        
-                        // Check custom animals
-                        if (customAnimals[selectedAnimal]) {
-                            emojiInput.value = customAnimals[selectedAnimal];
-                        }
-                    });
+        // Animal Picker
+        function openAnimalPicker() {
+            document.getElementById('animalPickerModal').classList.add('active');
+            renderAnimalPicker();
+            document.getElementById('animalSearch').focus();
+        }
+
+        function closeAnimalPicker() {
+            document.getElementById('animalPickerModal').classList.remove('active');
+        }
+
+        function renderAnimalPicker(searchTerm = '') {
+            const grid = document.getElementById('animalPickerGrid');
+            grid.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+            const lowerSearchTerm = searchTerm.toLowerCase();
+
+            const createPickerItem = (animal) => {
+                const item = document.createElement('div');
+                item.className = 'animal-picker-item';
+                item.innerHTML = `<span class="animal-picker-emoji">${animal.emoji}</span><span class="animal-picker-name">${animal.name}</span>`;
+                item.addEventListener('click', () => selectAnimal(animal.name, animal.emoji));
+                return item;
+            };
+
+            const displayed = new Set();
+            const animalsToShow = [...allAnimals, ...Object.entries(customAnimals).map(([name, emoji]) => ({ name, emoji }))];
+
+            animalsToShow.forEach(animal => {
+                if (!displayed.has(animal.name) && animal.name.toLowerCase().includes(lowerSearchTerm)) {
+                    fragment.appendChild(createPickerItem(animal));
+                    displayed.add(animal.name);
                 }
-            }, 100);
-        });
+            });
+            grid.appendChild(fragment);
+        }
+
+        function selectAnimal(name, emoji) {
+            modalState.name = name;
+            modalState.emoji = emoji;
+            document.getElementById('selectedName').textContent = name;
+            document.getElementById('selectedEmoji').textContent = emoji;
+            closeAnimalPicker();
+        }
+
+        function setCustomAnimal() {
+            const name = prompt('Enter animal name:');
+            if (!name) return;
+            const emoji = prompt('Enter emoji (or leave blank for default):', '🦴');
+            selectAnimal(name, emoji || '🦴');
+        }
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', init);
+
     </script>
 </body>
+
 </html>
