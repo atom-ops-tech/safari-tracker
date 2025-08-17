@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to S3 with optimized settings
         run: |
           # Copy entire build directory, don't be smart
-          aws s3 sync ./index.html s3://${{ env.S3_BUCKET }} --delete
+          aws s3 sync index.html s3://${{ env.S3_BUCKET }} --delete
 
       - name: Invalidate CloudFront cache
         run: |
