@@ -235,10 +235,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             animation: slideDown 0.5s ease-out 0.1s both;
         }
+
         .checklist-header h2 {
             color: #333;
             margin-bottom: 5px;
         }
+
         .checklist-header p {
             color: #666;
             font-size: 14px;
@@ -276,7 +278,7 @@
             will-change: transform, border-color, box-shadow;
             text-align: center;
         }
-        
+
         .animal-btn:active {
             transform: scale(0.95);
         }
@@ -292,12 +294,20 @@
             animation: wiggle 1.5s ease-in-out infinite;
         }
 
-
         @keyframes wiggle {
 
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-4deg); }
-            75% { transform: rotate(4deg); }
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-4deg);
+            }
+
+            75% {
+                transform: rotate(4deg);
+            }
         }
 
         .animal-name {
@@ -323,11 +333,81 @@
         }
 
         @keyframes pop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
+        /* Rarity indicator styles */
+        .rarity-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .rarity-very-common {
+            background: #10b981;
+            color: white;
+        }
+
+        .rarity-common {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .rarity-uncommon {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .rarity-rare {
+            background: #ef4444;
+            color: white;
+        }
+
+        .rarity-very-rare {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .rarity-points {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fbbf24;
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
         .add-sighting-form {
             display: flex;
             gap: 10px;
@@ -337,6 +417,7 @@
             margin-bottom: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
+
         .add-sighting-form input[type="text"] {
             flex-grow: 1;
             border: 2px solid #e5e7eb;
@@ -344,10 +425,12 @@
             padding: 0 12px;
             font-size: 14px;
         }
+
         .add-sighting-form input[type="text"]:focus {
             outline: none;
             border-color: #667eea;
         }
+
         .add-sighting-form input[type="number"] {
             width: 60px;
             border: 2px solid #e5e7eb;
@@ -356,6 +439,7 @@
             font-size: 14px;
             font-weight: bold;
         }
+
         .add-sighting-form button {
             padding: 10px 15px;
         }
@@ -369,7 +453,7 @@
             overflow-y: auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        
+
         .sighting-item {
             display: flex;
             justify-content: space-between;
@@ -432,7 +516,7 @@
         .btn-small:hover {
             transform: scale(1.1);
         }
-        
+
         .btn-edit {
             background: #3b82f6;
             color: white;
@@ -550,7 +634,7 @@
             outline: none;
             border-color: #667eea;
         }
-        
+
         .modal-content .tip-box {
             margin-top: 10px;
             padding: 10px;
@@ -596,7 +680,7 @@
             background: linear-gradient(135deg, #f9fafb, #f3f4f6);
             border-radius: 12px;
         }
-        
+
         .stat-value {
             font-size: 28px;
             font-weight: bold;
@@ -648,13 +732,27 @@
         }
 
         @keyframes slideUpNotification {
-            from { transform: translateX(-50%) translateY(100%); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            from {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
         }
 
         @keyframes fadeOutNotification {
-            from { opacity: 1; transform: translateX(-50%) translateY(0); }
-            to { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            from {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
         }
     </style>
 </head>
@@ -673,14 +771,13 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="checklist-header">
             <h2>🐆 Umbabat Animal Checklist</h2>
-            <p>Tap an animal to quickly log a sighting.</p>
+            <p>Tap an animal to quickly log a sighting. Rarity indicators show how special your sighting is!</p>
         </div>
 
-        <div class="animals-grid" id="animalsGrid">
-            </div>
+        <div class="animals-grid" id="animalsGrid"></div>
 
         <div class="add-sighting-form">
             <input type="text" id="newAnimalName" placeholder="Log another animal (e.g., Honey Badger)">
@@ -718,8 +815,8 @@
                     <div class="stat-label">Today</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value" id="pendingSync">0</div>
-                    <div class="stat-label">Pending Sync</div>
+                    <div class="stat-value" id="rarityScore">0</div>
+                    <div class="stat-label">Rarity Points</div>
                 </div>
             </div>
         </div>
@@ -729,7 +826,8 @@
         <div class="modal-content">
             <div class="family-badge" style="margin-bottom: 15px;">GOWSTERS FAMILY</div>
             <h2>🦁 Welcome to the Safari!</h2>
-            <p style="color: #666; margin-bottom: 20px; font-size: 14px;" id="setupMessage">Please enter your name to start tracking.</p>
+            <p style="color: #666; margin-bottom: 20px; font-size: 14px;" id="setupMessage">Please enter your name to
+                start tracking.</p>
             <input type="text" id="setupName" placeholder="Your name (e.g., Sam)">
             <input type="text" id="serverUrl" placeholder="Server URL (optional)">
             <input type="password" id="serverPassword" placeholder="Family password (optional)">
@@ -752,27 +850,64 @@
         </div>
     </div>
 
-
     <script>
+        // Animal rarity data based on real safari sighting difficulty
+        const animalRarity = {
+            // Very Common (5 points) - seen almost daily
+            'Impala': { rarity: 'very-common', points: 5 },
+            'Warthog': { rarity: 'very-common', points: 5 },
+            'Zebra': { rarity: 'very-common', points: 5 },
+            'Elephant': { rarity: 'very-common', points: 5 },
+            'Buffalo': { rarity: 'very-common', points: 5 },
+            'Giraffe': { rarity: 'very-common', points: 5 },
+            'Hippo': { rarity: 'very-common', points: 5 },
+            'Baboon': { rarity: 'very-common', points: 5 },
+
+            // Common (10 points) - frequently spotted
+            'Lion': { rarity: 'common', points: 10 },
+            'Kudu': { rarity: 'common', points: 10 },
+            'Antelope': { rarity: 'common', points: 10 },
+
+            // Uncommon (25 points) - need some luck/effort
+            'Leopard': { rarity: 'uncommon', points: 25 },
+            'Hyena': { rarity: 'uncommon', points: 25 },
+            'Crocodile': { rarity: 'uncommon', points: 25 },
+            'Eagle': { rarity: 'uncommon', points: 25 },
+            'Vulture': { rarity: 'uncommon', points: 25 },
+
+            // Rare (50 points) - elusive, require patience
+            'Rhino': { rarity: 'rare', points: 50 },
+            'Cheetah': { rarity: 'rare', points: 50 },
+            'Wild Dog': { rarity: 'rare', points: 50 },
+
+            // Very Rare (100 points) - exceptional sightings
+            'Pangolin': { rarity: 'very-rare', points: 100 },
+            'Aardvark': { rarity: 'very-rare', points: 100 },
+            'Honey Badger': { rarity: 'very-rare', points: 100 },
+            'Serval': { rarity: 'very-rare', points: 100 },
+            'African Wild Cat': { rarity: 'very-rare', points: 100 }
+        };
+
         const umbabatAnimals = [
-            { name: 'Lion', emoji: '🦁', isCommon: true }, { name: 'Elephant', emoji: '🐘', isCommon: true },
-            { name: 'Buffalo', emoji: '🐃', isCommon: true }, { name: 'Leopard', emoji: '🐆', isCommon: true },
-            { name: 'Rhino', emoji: '🦏', isCommon: true }, { name: 'Giraffe', emoji: '🦒', isCommon: true },
-            { name: 'Zebra', emoji: '🦓', isCommon: true }, { name: 'Hippo', emoji: '🦛', isCommon: true },
-            { name: 'Hyena', emoji: '🐺', isCommon: true }, { name: 'Warthog', emoji: '🐗', isCommon: true },
-            { name: 'Kudu', emoji: '🦌', isCommon: true }, { name: 'Impala', emoji: '🦌', isCommon: true },
-            { name: 'Wild Dog', emoji: '🐕', isCommon: true }, { name: 'Cheetah', emoji: '🐆', isCommon: true },
-            { name: 'Crocodile', emoji: '🐊', isCommon: true }, { name: 'Vulture', emoji: '🦅', isCommon: true },
-            { name: 'Eagle', emoji: '🦅', isCommon: true }, { name: 'Antelope', emoji: '🦌', isCommon: true },
-            { name: 'Baboon', emoji: '🐵', isCommon: true }
+            { name: 'Lion', emoji: '🦁' }, { name: 'Elephant', emoji: '🐘' },
+            { name: 'Buffalo', emoji: '🐃' }, { name: 'Leopard', emoji: '🐆' },
+            { name: 'Rhino', emoji: '🦏' }, { name: 'Giraffe', emoji: '🦒' },
+            { name: 'Zebra', emoji: '🦓' }, { name: 'Hippo', emoji: '🦛' },
+            { name: 'Hyena', emoji: '🐺' }, { name: 'Warthog', emoji: '🐗' },
+            { name: 'Kudu', emoji: '🦌' }, { name: 'Impala', emoji: '🦌' },
+            { name: 'Wild Dog', emoji: '🐕' }, { name: 'Cheetah', emoji: '🐆' },
+            { name: 'Crocodile', emoji: '🐊' }, { name: 'Vulture', emoji: '🦅' },
+            { name: 'Eagle', emoji: '🦅' }, { name: 'Antelope', emoji: '🦌' },
+            { name: 'Baboon', emoji: '🐵' }
         ];
 
         const animalEmojiMap = {
-            'lion': '🦁', 'elephant': '🐘', 'buffalo': '🐃', 'leopard': '🐆', 'rhino': '🦏', 'giraffe': '🦒', 
-            'zebra': '🦓', 'hippo': '🦛', 'hyena': '🐺', 'warthog': '🐗', 'kudu': '🦌', 'impala': '🦌', 
-            'wild dog': '🐕', 'cheetah': '🐆', 'crocodile': '🐊', 'vulture': '🦅', 'eagle': '🦅', 
+            'lion': '🦁', 'elephant': '🐘', 'buffalo': '🐃', 'leopard': '🐆', 'rhino': '🦏', 'giraffe': '🦒',
+            'zebra': '🦓', 'hippo': '🦛', 'hyena': '🐺', 'warthog': '🐗', 'kudu': '🦌', 'impala': '🦌',
+            'wild dog': '🐕', 'cheetah': '🐆', 'crocodile': '🐊', 'vulture': '🦅', 'eagle': '🦅',
             'antelope': '🦌', 'baboon': '🐵', 'monkey': '🐒', 'vervet monkey': '🐵', 'wildebeest': '🐃',
-            'honey badger': '🦡', 'jackal': '🦊', 'mongoose': '🦦', 'porcupine': '🦔', 'tortoise': '🐢'
+            'honey badger': '🦡', 'jackal': '🦊', 'mongoose': '🦦', 'porcupine': '🦔', 'tortoise': '🐢',
+            'pangolin': '🦦', 'aardvark': '🐷', 'serval': '🐆', 'african wild cat': '🐈'
         };
 
         // State variables
@@ -805,7 +940,7 @@
                 }
                 config.serverUrl = serverUrl;
                 config.password = decodeURIComponent(urlPassword);
-                
+
                 const serverInput = document.getElementById('serverUrl');
                 const passwordInput = document.getElementById('serverPassword');
                 serverInput.value = config.serverUrl;
@@ -821,7 +956,7 @@
                     document.getElementById('skipSetupBtn').style.display = 'none';
                 }
             }
-            
+
             saveConfig();
             startOnlineServices();
             addEventListeners();
@@ -829,6 +964,12 @@
             updateDisplay();
             updateWelcomeMessage();
             document.getElementById('userName').value = config.userName || '';
+
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                if (onlineInterval) clearInterval(onlineInterval);
+                if (syncInterval) clearInterval(syncInterval);
+            });
         }
 
         function addEventListeners() {
@@ -865,6 +1006,18 @@
 
         function generateId() {
             return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+
+        function getRarityInfo(animalName) {
+            return animalRarity[animalName] || { rarity: 'common', points: 10 };
+        }
+
+        function calculateTotalRarityScore() {
+            const activeSightings = sightings.filter(s => !s.deleted);
+            return activeSightings.reduce((total, sighting) => {
+                const rarityInfo = getRarityInfo(sighting.animal);
+                return total + (rarityInfo.points * sighting.count);
+            }, 0);
         }
 
         // Data Persistence
@@ -934,14 +1087,16 @@
             const countInput = document.getElementById('newAnimalCount');
             const animalName = nameInput.value.trim();
             const count = parseInt(countInput.value) || 1;
-            
+
             if (!animalName) return;
 
-            const formattedName = animalName.charAt(0).toUpperCase() + animalName.slice(1).toLowerCase();
+            const formattedName = animalName.split(' ').map(word =>
+                word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+            ).join(' ');
             const emoji = animalEmojiMap[formattedName.toLowerCase()] || '🐾';
-            
+
             addSighting(formattedName, count, '', emoji);
-            
+
             nameInput.value = '';
             countInput.value = 1;
             nameInput.focus();
@@ -954,15 +1109,32 @@
                 customAnimals[animal] = emoji;
             }
 
+            const rarityInfo = getRarityInfo(animal);
+            const pointsEarned = rarityInfo.points * count;
+
             sightings.push({
-                id: generateId(), animal, emoji,
-                count: parseInt(count), notes, timestamp: new Date().toISOString(),
-                user: config.userName || 'Anonymous', deviceId: config.deviceId,
-                synced: false, deleted: false
+                id: generateId(),
+                animal,
+                emoji,
+                count: parseInt(count),
+                notes,
+                timestamp: new Date().toISOString(),
+                user: config.userName || 'Anonymous',
+                deviceId: config.deviceId,
+                synced: false,
+                deleted: false
             });
 
             saveSightings();
-            showNotification('✨ Logged!', 'success'); // REVERTED to original text
+
+            // Show special notification for rare sightings
+            if (rarityInfo.rarity === 'very-rare') {
+                showNotification(`🎉 INCREDIBLE! ${animal} (+${pointsEarned} pts)`, 'success');
+            } else if (rarityInfo.rarity === 'rare') {
+                showNotification(`⭐ Excellent spot! ${animal} (+${pointsEarned} pts)`, 'success');
+            } else {
+                showNotification('✨ Logged!', 'success');
+            }
 
             if (isNewCustomAnimal) {
                 renderAnimals();
@@ -990,6 +1162,7 @@
             sighting.count = parseInt(document.getElementById('editModalCount').value) || 1;
             sighting.notes = document.getElementById('editModalNotes').value.trim();
             sighting.synced = false; // Mark as needing sync
+            sighting.timestamp = new Date().toISOString(); // Update timestamp for sync
 
             saveSightings();
             document.getElementById('editSightingModal').classList.remove('active');
@@ -1002,6 +1175,7 @@
             if (sighting) {
                 sighting.deleted = true;
                 sighting.synced = false;
+                sighting.timestamp = new Date().toISOString(); // Update timestamp for sync
                 saveSightings();
                 showNotification('Sighting deleted', 'error');
             }
@@ -1012,11 +1186,11 @@
             const grid = document.getElementById('animalsGrid');
             grid.innerHTML = '';
             const fragment = document.createDocumentFragment();
-            
+
             const animalsToDisplay = [...umbabatAnimals];
             Object.entries(customAnimals).forEach(([name, emoji]) => {
                 if (!animalsToDisplay.some(a => a.name === name)) {
-                    animalsToDisplay.push({ name, emoji, isCommon: false });
+                    animalsToDisplay.push({ name, emoji });
                 }
             });
 
@@ -1025,20 +1199,43 @@
                     .filter(s => s.animal === animal.name && !s.deleted)
                     .reduce((sum, s) => sum + s.count, 0);
 
+                const rarityInfo = getRarityInfo(animal.name);
                 const btn = document.createElement('div');
                 btn.className = 'animal-btn';
                 btn.style.setProperty('--index', index);
-                btn.innerHTML = `<div class="animal-emoji">${animal.emoji}</div><div class="animal-name">${animal.name}</div><div class="animal-count" id="count-${animal.name.replace(/\s/g, '')}">${totalCount}</div>`;
+
+                let rarityBadge = '';
+                let pointsBadge = '';
+                if (rarityInfo) {
+                    rarityBadge = `<div class="rarity-badge rarity-${rarityInfo.rarity}">${rarityInfo.rarity.replace('-', ' ')}</div>`;
+                    pointsBadge = `<div class="rarity-points">+${rarityInfo.points} pts</div>`;
+                }
+
+                btn.innerHTML = `
+                    ${rarityBadge}
+                    ${pointsBadge}
+                    <div class="animal-emoji">${animal.emoji}</div>
+                    <div class="animal-name">${animal.name}</div>
+                    <div class="animal-count" id="count-${animal.name.replace(/\s/g, '')}">${totalCount}</div>
+                `;
                 btn.addEventListener('click', () => addSighting(animal.name, 1, '', animal.emoji));
                 return btn;
             };
 
-            animalsToDisplay.sort((a,b) => a.name.localeCompare(b.name)).forEach((animal, index) => {
-                if (animal.isCommon || sightings.some(s => s.animal === animal.name && !s.deleted)) {
+            animalsToDisplay.sort((a, b) => {
+                const rarityA = getRarityInfo(a.name);
+                const rarityB = getRarityInfo(b.name);
+                if (rarityA.points !== rarityB.points) {
+                    return rarityB.points - rarityA.points; // Sort by rarity (rarest first)
+                }
+                return a.name.localeCompare(b.name);
+            }).forEach((animal, index) => {
+                const hasBeenSighted = sightings.some(s => s.animal === animal.name && !s.deleted);
+                if (umbabatAnimals.some(a => a.name === animal.name) || hasBeenSighted) {
                     fragment.appendChild(createAnimalButton(animal, index));
                 }
             });
-            
+
             grid.appendChild(fragment);
         }
 
@@ -1048,18 +1245,19 @@
             const uniqueCount = new Set(activeSightings.map(s => s.animal)).size;
             const today = new Date().toDateString();
             const todayCount = activeSightings.filter(s => new Date(s.timestamp).toDateString() === today).reduce((sum, s) => sum + s.count, 0);
-            const pendingCount = sightings.filter(s => !s.synced).length;
+            const rarityScore = calculateTotalRarityScore();
 
             document.getElementById('totalSightings').textContent = totalCount;
             document.getElementById('uniqueAnimals').textContent = uniqueCount;
             document.getElementById('todaySightings').textContent = todayCount;
-            document.getElementById('pendingSync').textContent = pendingCount;
+            document.getElementById('rarityScore').textContent = rarityScore;
             updateOnlineStatus(isOnline);
 
             const list = document.getElementById('sightingsList');
             list.innerHTML = '';
             const fragment = document.createDocumentFragment();
             [...activeSightings].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 15).forEach(sighting => {
+                const rarityInfo = getRarityInfo(sighting.animal);
                 const item = document.createElement('div');
                 item.className = 'sighting-item';
                 item.innerHTML = `
@@ -1068,6 +1266,7 @@
                         <span class="sighting-user">${sighting.user}</span><br>
                         <small style="color: #999;">${new Date(sighting.timestamp).toLocaleString()}</small>
                         ${sighting.notes ? `<br><small style="color: #666;">📝 ${sighting.notes}</small>` : ''}
+                        ${rarityInfo ? `<br><small style="color: #764ba2;">⭐ ${rarityInfo.points * sighting.count} rarity points</small>` : ''}
                     </div>
                     <div class="sighting-actions">
                         <button class="btn-small btn-edit" data-id="${sighting.id}">✏️</button>
@@ -1083,7 +1282,7 @@
                 btn.addEventListener('click', () => deleteSighting(btn.dataset.id));
             });
 
-            [...umbabatAnimals, ...Object.keys(customAnimals).map(name => ({name}))].forEach(animal => updateAnimalCount(animal.name));
+            [...umbabatAnimals, ...Object.keys(customAnimals).map(name => ({ name }))].forEach(animal => updateAnimalCount(animal.name));
         }
 
         function updateAnimalCount(animal) {
@@ -1109,7 +1308,7 @@
             }, 2000);
         }
 
-        // Networking and Sync
+        // Networking and Sync - FIXED to handle deletes properly
         async function checkOnlineStatus() {
             if (!config.serverUrl) return updateOnlineStatus(false);
             try {
@@ -1138,10 +1337,11 @@
 
         async function syncNow(showFeedback = true) {
             if (!config.serverUrl) {
-                if(showFeedback) showNotification('Offline mode, cannot sync.', 'info');
+                if (showFeedback) showNotification('Offline mode, cannot sync.', 'info');
                 return;
             }
             try {
+                // First, send all unsynced changes (including deletes)
                 const unsynced = sightings.filter(s => !s.synced);
                 if (unsynced.length > 0) {
                     await fetch(`${config.serverUrl}/sync`, {
@@ -1150,6 +1350,8 @@
                         body: JSON.stringify({ deviceId: config.deviceId, sightings: unsynced })
                     });
                 }
+
+                // Then fetch all sightings from server
                 const getRes = await fetch(`${config.serverUrl}/sightings`, { headers: { 'X-Password': config.password } });
                 if (getRes.ok) {
                     const serverSightings = await getRes.json();
@@ -1167,19 +1369,42 @@
 
         function mergeSightings(serverSightings) {
             const localSightingMap = new Map(sightings.map(s => [s.id, s]));
-            
+
+            // Process server sightings
             serverSightings.forEach(serverSighting => {
                 const local = localSightingMap.get(serverSighting.id);
                 if (!local) {
+                    // New sighting from server
                     sightings.push({ ...serverSighting, synced: true });
                     const isBuiltIn = umbabatAnimals.some(a => a.name === serverSighting.animal);
                     if (serverSighting.emoji && !isBuiltIn) {
                         customAnimals[serverSighting.animal] = serverSighting.emoji;
                     }
                 } else {
-                    Object.assign(local, serverSighting, { synced: true });
+                    // Existing sighting - use most recent version
+                    const serverTime = new Date(serverSighting.timestamp);
+                    const localTime = new Date(local.timestamp);
+
+                    if (serverTime > localTime) {
+                        // Server version is newer
+                        Object.assign(local, serverSighting, { synced: true });
+                    } else if (localTime > serverTime && !local.synced) {
+                        // Local version is newer and unsynced - keep local
+                        // This handles the case where we edited or deleted locally
+                    } else {
+                        // Mark as synced if timestamps match
+                        local.synced = true;
+                    }
                 }
             });
+
+            // Mark all local changes as synced after successful merge
+            sightings.forEach(s => {
+                if (!s.synced) {
+                    s.synced = true;
+                }
+            });
+
             saveSightings();
             renderAnimals();
         }
@@ -1194,10 +1419,19 @@
         function exportData() {
             const data = sightings.filter(s => !s.deleted);
             const escapeCSV = (str) => `"${String(str || '').replace(/"/g, '""')}"`;
-            const csv = [['Animal', 'Count', 'Date', 'Time', 'User', 'Notes'].join(','), ...data.map(s => {
-                    const d = new Date(s.timestamp);
-                    return [escapeCSV(s.animal), s.count, d.toLocaleDateString(), d.toLocaleTimeString(), escapeCSV(s.user), escapeCSV(s.notes)].join(',');
-                })
+            const csv = [['Animal', 'Count', 'Date', 'Time', 'User', 'Notes', 'Rarity Points'].join(','), ...data.map(s => {
+                const d = new Date(s.timestamp);
+                const rarityInfo = getRarityInfo(s.animal);
+                return [
+                    escapeCSV(s.animal),
+                    s.count,
+                    d.toLocaleDateString(),
+                    d.toLocaleTimeString(),
+                    escapeCSV(s.user),
+                    escapeCSV(s.notes),
+                    rarityInfo.points * s.count
+                ].join(',');
+            })
             ].join('\n');
             downloadFile(csv, `gowsters-safari-${new Date().toISOString().split('T')[0]}.csv`, 'text/csv');
         }
@@ -1246,7 +1480,7 @@
             a.click();
             document.body.removeChild(a);
         }
-        
+
         // Initialize App
         document.addEventListener('DOMContentLoaded', init);
 
