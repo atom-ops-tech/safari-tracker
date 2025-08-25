@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to S3 with optimized settings
         run: |
           aws s3 cp index.html s3://${{ env.S3_BUCKET }}/index.html
-          aws s3 cp timbafacts.html s3://${{ env.S3_BUCKET }}/timbafacts.html
+          aws s3 cp timbafacts/index.html s3://${{ env.S3_BUCKET }}/timbafacts/index.html
           aws s3 cp robots.txt s3://${{ env.S3_BUCKET }}/robots.txt
 
       - name: Invalidate CloudFront cache
