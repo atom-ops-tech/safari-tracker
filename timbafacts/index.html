@@ -273,16 +273,16 @@
     <div class="container">
         <div class="header">
             <h1>Gowster Family Safari Adventure</h1>
-            <p>Umbabat Nature Reserve • August 17, 20-24, 2025</p>
+            <p>Umbabat Nature Reserve • August 20-24, 2025</p>
         </div>
         
         <div class="stats-grid">
             <div class="stat-card">
-                <span class="stat-number">21</span>
+                <span class="stat-number">18</span>
                 <div class="stat-label">Different Species Spotted</div>
             </div>
             <div class="stat-card">
-                <span class="stat-number">164+</span>
+                <span class="stat-number">136+</span>
                 <div class="stat-label">Non-Buffalo Sightings</div>
             </div>
             <div class="stat-card">
@@ -464,7 +464,7 @@
                 labels: ['Elephant', 'Giraffe', 'Zebra', 'Hippo', 'Warthog', 'Terrapin', 'Hyena', 'Lion', 'Crocodile', 'Mongoose'],
                 datasets: [{
                     label: 'Number of Sightings',
-                    data: [32, 30, 28, 26, 11, 6, 6, 6, 5, 5],
+                    data: [32, 30, 27, 25, 10, 6, 6, 6, 5, 5],
                     backgroundColor: [
                         '#8B4513', '#D2691E', '#CD853F', '#DEB887', 
                         '#F4A460', '#D2B48C', '#BC8F8F', '#F5DEB3', 
@@ -495,15 +495,15 @@
             }
         });
         
-        // Daily Activity Chart (excluding Buffalo and test days Aug 18-19)
+        // Daily Activity Chart (excluding Buffalo and test days Aug 17-19)
         const dailyCtx = document.getElementById('dailyChart').getContext('2d');
         new Chart(dailyCtx, {
             type: 'line',
             data: {
-                labels: ['Aug 17', 'Aug 20', 'Aug 21', 'Aug 22', 'Aug 23', 'Aug 24'],
+                labels: ['Aug 20', 'Aug 21', 'Aug 22', 'Aug 23', 'Aug 24'],
                 datasets: [{
                     label: 'Animals Spotted (excl. Buffalo)',
-                    data: [6, 4, 47, 23, 41, 21],
+                    data: [4, 47, 23, 41, 21],
                     borderColor: '#D2691E',
                     backgroundColor: 'rgba(210, 105, 30, 0.2)',
                     tension: 0.4,
@@ -516,7 +516,7 @@
                     legend: { display: true },
                     title: {
                         display: true,
-                        text: 'Buffalo excluded, Aug 18-19 test data removed',
+                        text: 'Buffalo excluded, Aug 17-19 test data removed',
                         font: { size: 12 },
                         color: '#666'
                     }
@@ -540,7 +540,7 @@
             data: {
                 labels: ['Water-Associated (Hippo, Croc, Terrapin)', 'Pure Land Animals'],
                 datasets: [{
-                    data: [37, 129],
+                    data: [36, 124],
                     backgroundColor: ['#4682B4', '#8B4513'],
                     borderWidth: 2,
                     borderColor: '#fff'
@@ -630,7 +630,7 @@
                 },
                 {
                     label: 'Outside Drive Times',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0],
                     borderColor: '#B0B0B0',
                     backgroundColor: 'rgba(176, 176, 176, 0.2)',
                     tension: 0.4,
@@ -664,7 +664,7 @@
             data: {
                 labels: ['Common (5 pts)', 'Uncommon (10 pts)', 'Rare (25 pts)', 'Very Rare (50+ pts)'],
                 datasets: [{
-                    data: [115, 16, 18, 17],
+                    data: [112, 16, 16, 17],
                     backgroundColor: ['#90EE90', '#FFD700', '#FF8C00', '#FF4500'],
                     borderWidth: 2,
                     borderColor: '#fff'
@@ -705,8 +705,8 @@
             },
             {
                 question: "On which day did we have the most sightings (excluding buffalo)?",
-                options: ["August 17", "August 20", "August 21", "August 23"],
-                correct: 2
+                options: ["August 20", "August 21", "August 22", "August 23"],
+                correct: 1
             },
             {
                 question: "How many mongooses did we spot at once?",
@@ -734,8 +734,8 @@
                 correct: 3
             },
             {
-                question: "How many days did our actual safari last (excluding test days)?",
-                options: ["5 days", "6 days", "7 days", "8 days"],
+                question: "How many days did our safari last?",
+                options: ["4 days", "5 days", "6 days", "7 days"],
                 correct: 1
             },
             {
@@ -760,7 +760,7 @@
             },
             {
                 question: "How many total leopard sightings did we have?",
-                options: ["2", "3", "4", "5"],
+                options: ["1", "2", "3", "4"],
                 correct: 2
             }
         ];
